@@ -21,7 +21,9 @@ var app = app || {};
 		events:
 		{
 			'click .toggle': 'toggleCompleted',
+			'click .priority-btn': 'togglePriority',
 			'dblclick label': 'edit',
+			'click .edit-btn': 'edit',
 			'click .destroy': 'clear',
 			'keypress .edit': 'updateOnEnter',
 			'keydown .edit': 'revertOnEscape',
@@ -56,6 +58,9 @@ var app = app || {};
 
 			this.$el.html(this.template(this.model.toJSON()));
 			this.$el.toggleClass('completed', this.model.get('completed'));
+			this.$el.toggleClass('priorityLow', this.model.get('priority') == 0);
+			this.$el.toggleClass('priorityNormal', this.model.get('priority') == 1);
+			this.$el.toggleClass('priorityHigh', this.model.get('priority') == 2);
 			this.toggleVisible();
 			this.$input = this.$('.edit');
 			return this;
@@ -84,6 +89,19 @@ var app = app || {};
 		{
 			this.$el.addClass('editing');
 			this.$input.focus();
+		},
+
+		// Prioritize a task
+		togglePriority: function ()
+		{
+			console.log("priority:" + this.model.get('priority'));
+
+			this.model.togglePriority();
+
+			this.model.get('priority') > this.model.get('maxPriority') ?
+				this.model.save({ priority: this.model.get('lowPriority') }) : true;
+
+			console.log("priority:" + this.model.get('priority'));
 		},
 
 		// Close the `"editing"` mode, saving changes to the todo.
