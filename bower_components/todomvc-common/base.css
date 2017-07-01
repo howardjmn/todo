@@ -27,7 +27,7 @@ body
 	line-height: 1.4em;
 	background: #eaeaea url('bg.png');
 	color: #4d4d4d;
-	width: 550px;
+	width: 650px;
 	margin: 0 auto;
 	-webkit-font-smoothing: antialiased;
 	-moz-font-smoothing: antialiased;
@@ -40,6 +40,49 @@ button,
 input[type="checkbox"]
 {
   outline: none;
+}
+
+.priorityInit
+{
+	position: absolute;
+	top: 40px;
+	width: 40px;
+	text-align: center;
+	text-decoration: none;
+	background: rgba(0, 0, 0, 0.1);
+	font-size: 11px;
+	border-radius: 3px;
+	box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.2);
+}
+
+#priorityLow-btn
+{
+	right: 95px;
+	color: yellow;
+}
+
+#priorityNormal-btn
+{
+	right: 50px;
+}
+
+#priorityHigh-btn
+{
+	right: 5px;
+	color: purple;
+	font-weight: bold;
+}
+#p
+{
+	float: right;
+	position: relative;
+	line-height: 20px;
+	text-decoration: none;
+	background: rgba(0, 0, 0, 0.1);
+	font-size: 11px;
+	padding: 0 10px;
+	border-radius: 3px;
+	box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.2);
 }
 
 #todoapp
@@ -126,7 +169,7 @@ input[type="checkbox"]
 {
 	position: relative;
 	margin: 0;
-	width: 100%;
+	width: 70%;
 	font-size: 24px;
 	font-family: inherit;
 	line-height: 1.4em;
@@ -314,14 +357,26 @@ label[for='toggle-all']
 	text-decoration: line-through;
 }
 
-#todo-list li.priority:not(.completed) label
+#todo-list li.priorityLow:not(.completed) label
 {
-	color: #d66;
+	color: yellow;
 }
 
-#todo-list li.priority .priority-btn:after
+#todo-list li.priorityHigh:not(.completed) label
 {
-	color: #d66;
+	color: purple;
+	font-weight: bold;
+}
+
+#todo-list li.priorityLow .priority-btn:after
+{
+	color: yellow;
+}
+
+#todo-list li.priorityHigh .priority-btn:after
+{
+	color: purple;
+	font-weight: bold;
 }
 
 #todo-list li .destroy,
@@ -676,7 +731,7 @@ hr
 
 	.learn-bar #todoapp
 	{
-		width: 550px;
+		width: 650px;
 		margin: 130px auto 40px auto;
 	}
 }
